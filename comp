@@ -1,0 +1,1 @@
+gcc main.c ft_printf.c treatment.c treat_arg.c ft_print_int.c ft_fitoa.c put_double.c long_arifmetic.c libft/libft.a -I ft_printf.h

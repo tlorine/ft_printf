@@ -1,0 +1,28 @@
+    // size = i;
+    // i = 0;
+    // while (i != size)
+    // {
+    //     if (i == save && po_to != NULL)
+    //     {
+    //         do_to = ft_strdup(po_to);
+    //         po_to = ft_strdel(&po_to);
+    //         nw.bits.exp = (ft_strlen(do_to));
+    //     }
+    //     buff = add_float(po_to, res[i]);
+    //     po_to = ft_strdel(&po_to);
+    //     po_to = ft_strdup(buff);
+    //     buff = ft_strdel(&buff);
+    //     i++;
+    // }
+    // if(do_to)
+    // {
+    //     buff = ft_strjoin(do_to, po_to);
+    //     put_float(buff, nw.bits.exp, arg, nw.bits.zn);
+    //     buff = ft_strdel(&buff);
+    //     do_to = ft_strdel(&do_to);
+    // }
+    // else
+    //     put_float(po_to, ft_strlen(po_to), arg, nw.bits.zn);
+    // while (size-- > 0)
+    //     res[size] = ft_strdel(&res[size]);
+    // po_to = ft_strdel(&po_to);
