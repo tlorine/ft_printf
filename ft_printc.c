@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/07 15:21:23 by tlorine           #+#    #+#             */
-/*   Updated: 2019/08/14 16:28:46 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/07/11 19:15:40 by dsandshr          #+#    #+#             */
+/*   Updated: 2019/07/13 16:02:05 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char *format, ...)
+int					ft_printc(int simnum, params argument)
 {
-	int i;
-	va_list ap;
-	params argument;
+	unsigned char	sim;
+	int				i;
 
-	va_start(ap, format);
-	while (*format != '\0')
+	sim = simnum;
+	i = 0;
+	if ((argument.flag & POZ_2) == POZ_2)
 	{
-		if (*format == '%')
-		{
-			++format;
-			int s;
-			argument = params_arg(&format);
-			treat_arg(ap, argument);
-		}
-		else
-		{
-			write(1, format, 1);
-			++format;
-		}
+		i += write(1, &sim, 1);
+		while (--argument.width > 0)
+			i += write(1, " ", 1);
 	}
-	va_end(ap);
-	return (0);
+	else
+	{
+		while (--argument.width > 0)
+			i += write(1, " ", 1);
+		i += write(1, &sim, 1);
+	}
+	return (i);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorine <tlorine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 15:29:29 by tlorine           #+#    #+#             */
-/*   Updated: 2019/08/14 15:03:42 by tlorine          ###   ########.fr       */
+/*   Updated: 2019/08/14 16:28:55 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define NUM(x) (x >= '0' && x <= '9')
 # define SHIFT_LEFT(x, y) x = x - 1, y = y - 1;
 # define STEP_ROUND(m, n, r, o) max--, r = (n[m] - '0') + 1,\
- o = r / 10, n[m] = (r % 10) + '0'
+o = r / 10, n[m] = (r % 10) + '0'
 # define ADD(x, y, z) (y = x / 10, z = (x % 10) + '0')
 # define LAR_SIZE(x, y, z, s) (s = x > y ? x : y, s = s > z ? s : z)
 # define AR_SIM(f, t, c) ((((f & POZ_5) == POZ_5 || (f & POZ_1) == POZ_1) || c == '-') && (t != 'u' && t != 'x' && t != 'X' && t != 'o'))

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   treat_arg.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/14 17:12:21 by dsandshr          #+#    #+#             */
+/*   Updated: 2019/08/14 17:12:22 by dsandshr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 char	*ft_uitoa(unsigned long long int n, long long int base, char a)
@@ -75,6 +87,6 @@ int treat_arg (va_list ap, params param)
             ft_fitoa(va_arg(ap, double), param);
 		else
 			ft_fitoa(va_arg(ap, long double), param);
-	}	
+	}
 	return (0);
 }
