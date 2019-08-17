@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlorine <tlorine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 15:29:29 by tlorine           #+#    #+#             */
-/*   Updated: 2019/08/14 16:28:55 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/08/17 14:31:53 by tlorine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ o = r / 10, n[m] = (r % 10) + '0'
 # define AR_SIM(f, t, c) ((((f & POZ_5) == POZ_5 || (f & POZ_1) == POZ_1) || c == '-') && (t != 'u' && t != 'x' && t != 'X' && t != 'o'))
 # define TYPE(x) (x != 'd' &&  x != 'i' && x != 'c' && x != 'e' && x != 'E' && x != 'f'\
 && x != 'g' && x != 'G' && x != 'o' && x != 's' && x != 'S' && x != 'u' && x != 'x' && x != 'X' && x != 'p' && x != 'n' && x != 'b' && x != '\0')
+# define REALNO(b, n, i, i2) b = n, i = i + 1, i2 = i2 + 1 
 
 typedef struct s_long_ar
 {
@@ -44,6 +45,13 @@ typedef struct s_long_ar
     int res;
 }              long_ar;
 
+typedef struct s_afloat
+{
+    int len1;
+    int len2;
+    int size;
+    char *result;
+}              afloat;
 
 typedef struct	s_params
 {
@@ -84,5 +92,13 @@ void    ft_fitoa(long double x, params arg);
 void put_float(char *num, int pointer, params arg, int zn);
 char *add_float(char *num1, char *num2);
 char *power_of(int exp);
+void alloc_result(afloat *af, long_ar *la, char *num1, char *num2);
+int count_num(char *num1, char *num2, int len1, int len2);
+char *if_e(params arg, notation notation, char *buffer, int i2);
+char *ft_if_ost(int ost, int *i2, int size);
+void ft_if_poz_chetire(params *argument, char *s_num);
+void ft_else_w(params argument, char **save, int size, int max);
+int					ft_printc(int simnum, params argument);
+void		ft_prints(char *str, params argument);
 
 #endif

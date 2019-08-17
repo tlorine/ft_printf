@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlorine <tlorine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:20:29 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/08/14 17:42:45 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/08/17 16:47:20 by tlorine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*assignment(int *size, int *save, int *i, int exp)
 {
-	*size = 64;
 	char *buffer;
 
 	buffer = NULL;
+	*size = 64;
 	if (exp < 0)
 	{
 		buffer = (char *)malloc(sizeof(char) * 2);
@@ -29,7 +29,7 @@ char	*assignment(int *size, int *save, int *i, int exp)
 		return (buffer);
 	}
 	*i = 0;
-	return (buffer);
+	return (NULL);
 }
 
 void chota(char* do_to, char* po_to, params arg, t_float nw)
@@ -56,7 +56,7 @@ void 	compaund(t_float nw, int i, char **res, params arg)
 	char *buff;
 
 	size = i;
-	IN_VAR(i, nw.bits.exp, nw.bits.exp, nw.bits.exp);
+	IN_VAR(i, nw.bits.exp, do_to, po_to);
 	while (i != size)
 	{
 		if (i == nw.bits.mantisa && po_to != NULL)
@@ -74,13 +74,12 @@ void 	compaund(t_float nw, int i, char **res, params arg)
 	chota(do_to, po_to, arg, nw);
 	while (size-- > 0)
 		res[size] = ft_strdel(&res[size]);
-	po_to = ft_strdel(&po_to);
 }
 
 void	ft_fitoa(long double x, params arg)
 {
 	t_float nw;
-	char *res[200];
+	char **res = (char **)malloc(sizeof(char *) * 200);
 	int i;
 	int save;
 	int size;
@@ -96,10 +95,12 @@ void	ft_fitoa(long double x, params arg)
 			res[i] = power_of(nw.bits.exp);
 			i++;
 		}
-		nw.bits.exp--;
+		nw.bits.exp = nw.bits.exp - 1;
 		if (nw.bits.exp == -1 && save == 0)
 			save = i;
 	}
 	nw.bits.mantisa = save;
 	compaund(nw, i, res, arg);
+	free(res);
+	res = NULL;
 }

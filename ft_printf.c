@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlorine <tlorine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 15:21:23 by tlorine           #+#    #+#             */
-/*   Updated: 2019/08/14 16:28:46 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/08/17 16:39:54 by tlorine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			++format;
-			int s;
+			//int s;
 			argument = params_arg(&format);
 			treat_arg(ap, argument);
 		}

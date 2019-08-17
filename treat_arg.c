@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlorine <tlorine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 17:12:21 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/08/14 17:12:22 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/08/17 16:41:08 by tlorine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ char	*ft_uitoa(unsigned long long int n, long long int base, char a)
     }
 	return (p);
 }
+
+int not_int(va_list ap, params param)
+{
+	if (param.type == 'e' || param.type == 'E' || param.type == 'f')
+	{
+		if ((param.mod & POZ_5) == 0)
+            ft_fitoa(va_arg(ap, double), param);
+		else
+			ft_fitoa(va_arg(ap, long double), param);
+	}
+	else if (param.type == 'c')
+		ft_printc(va_arg(ap, int), param);
+	else if (param.type == 's')
+		ft_prints(va_arg(ap, char*), param);
+	return (0);
+}
+
 int	treat_u(va_list ap, params param, int base, int a)
 {
 	if ((param.mod & POZ_1) == POZ_1)
@@ -81,12 +98,7 @@ int treat_arg (va_list ap, params param)
 			else
 				put_int(va_arg(ap, int), param, base, a);
 	}
-	else if (param.type == 'e' || param.type == 'E' || param.type == 'f')
-	{
-		if ((param.mod & POZ_5) == 0)
-            ft_fitoa(va_arg(ap, double), param);
-		else
-			ft_fitoa(va_arg(ap, long double), param);
-	}
+	else
+		not_int(ap, param);
 	return (0);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_prints.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlorine <tlorine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 15:33:43 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/08/14 20:07:04 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/08/16 20:40:35 by tlorine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_flags(char *str, params argument, int sl)
+void		ft_flags(char *str, params argument, int sl)
 {
 	int i;
 
@@ -21,20 +21,18 @@ int		ft_flags(char *str, params argument, int sl)
 	{
 		while (--argument.width >= 0)
 			i += write(1, "0", 1);
-		while (*str)
-			i += write(1, str, sl);
+		i += write(1, str, sl);
 	}
 	else if ((argument.flag & POZ_2) == POZ_2)
-	{
-		while (0 && *str)
-			i += write(1, str++, sl);
+	{	
+		i += write(1, str++, sl);
 		while (--argument.width >= 0)
 			i += write(1, " ", 1);
 	}
-	return (i);
+//	return (i);
 }
 
-int		ft_prints(char *str, params argument)
+void		ft_prints(char *str, params argument)
 {
 	int	i;
 	int sl;
@@ -48,11 +46,10 @@ int		ft_prints(char *str, params argument)
 	if (argument.flag)
 		ft_flags(str, argument, sl);
 	else
-		while (*str)
-		{
-			while (--argument.width >= 0)
+	{
+		while (--argument.width >= 0)
 				i += write(1, " ", 1);
-			i += write(1, str, sl);
-		}
-	return (i);
+		i += write(1, str, sl);
+	}
+	//return (i);
 }

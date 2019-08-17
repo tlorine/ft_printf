@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treatment.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlorine <tlorine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:59:29 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/08/14 17:03:26 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/08/17 16:51:52 by tlorine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ params params_arg(const char **format)
 	params argument;
 
 	IN_STRUCT(argument, flag, mod, width, accur);
-	while (TYPE(**format))
+	while (TYPE(**format) && **format != '\0')
 	{
 		if (FLAGS(**format))
 			arg_flags(format, &argument.flag);
@@ -92,9 +92,11 @@ params params_arg(const char **format)
 			arg_width(format, &argument.width);
 		++(*format);
 	}
-	if (argument.accur == -1)
-		argument.accur = 'f' ? 6 : 0;
 	argument.type = **format;
+	if (argument.accur == -1 && (argument.type == 'f' || argument.type == 'E' || argument.type == 'e'))
+		argument.accur = 6;
+	else if(argument.accur == -1)
+		argument.accur = 0;
 	++(*format);
 	return (argument);
 }

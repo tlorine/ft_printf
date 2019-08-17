@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_double.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlorine <tlorine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 17:07:48 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/08/14 17:42:27 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/08/17 15:44:23 by tlorine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,14 @@ char *upadate_string(char *num, notation notation, int ost, params arg)
 	int i2;
 	char *buffer;
 
-	i = 0;
-	i2 = 0;
-	arg.accur = arg.accur;
+	IN_VAR(i, i, i2, i2);
 	size = notation.pointer + arg.accur + ((arg.type != 'f' ? 2 : 0)) + (notation.notation < 10 ? 1 : 0);
 	if (notation.pointer > 0 && arg.accur > 0)
 		size++;
-	buffer = (char *)malloc(sizeof(char) * (size + 1) + ost);
-	if (ost)
-	{
-		buffer[0] = '1';
-		i2++;
-	}
+	buffer = ft_if_ost(ost, &i2, size);
 	while (i2 < (size - (arg.type != 'f' ? 2 : 0)) - (notation.notation < 10 ? 1 : 0) && num[i] != '\0')
 	{
-		buffer[i2] = num[i];
-		i2++;
-		i++;
+		REALNO(buffer[i2], num[i], i2, i);
 		if (i == notation.pointer + ost && arg.accur > 0 && notation.pointer > 0)
 		{
 			buffer[i2] = '.';
@@ -47,20 +38,7 @@ char *upadate_string(char *num, notation notation, int ost, params arg)
 		buffer[i2] = '0';
 		i2++;
 	}
-	if (arg.type != 'f')
-	{
-		buffer[i2] = arg.type;
-		buffer[i2 + 1] = notation.ar;
-		i2 = i2 + 2;
-		if(notation.notation < 10)
-		{
-			buffer[i2] = '0';
-			i2++;
-		}
-		buffer[i2] = '\0';
-		buffer = ft_strjoin(buffer, ft_itoa(notation.notation, 10, 'a'));
-	}
-	return (buffer);
+	return (if_e(arg, notation, buffer, i2));
 }
 
 int rounding(char *num, int *pointer, params arg)
@@ -156,7 +134,7 @@ void put_float(char *num, int pointer, params arg, int zn)
 		i++;
 		notation.ar = '-';
 	}
-	notation.notation = i != 0 ? i : notation.pointer - 1;
+	notation.notation = (i != 0 ? i : notation.pointer - 1);
 	num = num + i;
 	if (arg.type == 'e' || arg.type == 'E')
 		notation.pointer = 1;
