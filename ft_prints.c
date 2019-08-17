@@ -6,7 +6,7 @@
 /*   By: tlorine <tlorine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 15:33:43 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/08/16 20:40:35 by tlorine          ###   ########.fr       */
+/*   Updated: 2019/08/17 17:49:02 by tlorine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ void		ft_prints(char *str, params argument)
 	int sl;
 
 	i = 0;
-	if (argument.accur != 0)
-		sl = ft_strlen(str) < argument.accur ? ft_strlen(str) : argument.accur;
-	else
-		sl = ft_strlen(str);
+	sl = ft_strlen(str) < argument.accur ? ft_strlen(str) : argument.accur;
 	argument.width -= (argument.width != 0 ? sl : 0);
 	if (argument.flag)
 		ft_flags(str, argument, sl);
